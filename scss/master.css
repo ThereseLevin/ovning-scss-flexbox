@@ -376,6 +376,7 @@ body {
 }
 /* ====== NAVBAR ====== */
 nav {
+  background-color: gold;
   position: fixed;
   top: 0;
   left: 0;
@@ -399,7 +400,7 @@ nav ul li {
 nav ul li a {
   display: inline-block;
   padding: 1em;
-  color: white;
+  color: #272727;
   text-decoration: none;
 }
 nav ul li :hover {
