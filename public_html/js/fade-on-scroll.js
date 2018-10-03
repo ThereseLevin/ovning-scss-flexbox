@@ -4,7 +4,40 @@ Author: Therese Levin
 Created: October 2018
 */ 
 
-//Lägga in i en function så vi kan kalla på den senare
+
+
+
+//Stället där den ska sluta fadea
+const breakpoint = $(".wrapper").width();
+
+//Kolla hur brett webbläsarfönstret är  (viewporten)
+let previousWidth = $(window).width();
+
+selectAlphaMode(previousWidth);
+
+$(window).resize(function() {
+    let width = $(window).width();
+
+    if ((width < breakpoint && previousWidth >= breakpoint) || (width >= breakpoint && previousWidth < breakpoint)){
+        selectAlphaMode(width);
+    }
+    previousWidth = width;
+
+});
+
+// Sätt alpha till 1 eller adaptiv baserat på viewportens bredd
+function selectAlphaMode(width){
+    
+    if (width < breakpoint){
+        $(document).scroll().off();
+        setAlpha(1);
+    } else{
+        setAlpha(calcAlpha());
+        $(document).scroll(function(){
+            setAlpha(calcAlpha());
+        });
+    }
+}
 
 
 function setAlpha(alpha) {
@@ -39,12 +72,3 @@ function calcAlpha (){
     //Retunera vad alpha nu har blivit efter vår uträkning
     return alpha;
 }
-
-//När det scrollar, då aktiveras det
-$(document).scroll(function(){
-    setAlpha(calcAlpha());
-});
-
-
-
-//console.log("Du är " + $(document).scrollTop() + " från toppen");
